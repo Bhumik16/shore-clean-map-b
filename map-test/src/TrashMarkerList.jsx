@@ -65,59 +65,87 @@ function TrashMarkerList({
             borderRadius: "12px",
             overflow: "hidden",
             border: "1px solid #e2e8f0",
-            backgroundColor: "#ffffff"
+            backgroundColor: "#ffffff",
           }}
         >
-          <thead style={{ background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)" }}>
+          <thead
+            style={{
+              background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)",
+            }}
+          >
             <tr>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Address</th>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Latitude</th>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Longitude</th>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Status</th>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Action</th>
-              <th style={{ 
-                padding: "14px 12px", 
-                color: "#ffffff", 
-                fontWeight: "600", 
-                fontSize: "14px",
-                textAlign: "left",
-                borderBottom: "2px solid #2b77cb"
-              }}>Remark</th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Address
+              </th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Latitude
+              </th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Longitude
+              </th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Status
+              </th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Action
+              </th>
+              <th
+                style={{
+                  padding: "14px 12px",
+                  color: "#ffffff",
+                  fontWeight: "600",
+                  fontSize: "14px",
+                  textAlign: "left",
+                  borderBottom: "2px solid #2b77cb",
+                }}
+              >
+                Remark
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -132,27 +160,40 @@ function TrashMarkerList({
                       ? statusColor["ongoing"]
                       : statusColor["pending"],
                   transition: "background 0.3s",
-                  borderBottom: index === markers.length - 1 ? "none" : "1px solid #e2e8f0"
+                  borderBottom:
+                    index === markers.length - 1 ? "none" : "1px solid #e2e8f0",
                 }}
               >
-                <td style={{ 
-                  padding: "12px", 
-                  borderRight: "1px solid #e2e8f0",
-                  fontSize: "14px",
-                  color: "#2d3748"
-                }}>{marker.address}</td>
-                <td style={{ 
-                  padding: "12px", 
-                  borderRight: "1px solid #e2e8f0",
-                  fontSize: "14px",
-                  color: "#2d3748"
-                }}>{marker.latitude}</td>
-                <td style={{ 
-                  padding: "12px", 
-                  borderRight: "1px solid #e2e8f0",
-                  fontSize: "14px",
-                  color: "#2d3748"
-                }}>{marker.longitude}</td>
+                <td
+                  style={{
+                    padding: "12px",
+                    borderRight: "1px solid #e2e8f0",
+                    fontSize: "14px",
+                    color: "#2d3748",
+                  }}
+                >
+                  {marker.address}
+                </td>
+                <td
+                  style={{
+                    padding: "12px",
+                    borderRight: "1px solid #e2e8f0",
+                    fontSize: "14px",
+                    color: "#2d3748",
+                  }}
+                >
+                  {marker.latitude}
+                </td>
+                <td
+                  style={{
+                    padding: "12px",
+                    borderRight: "1px solid #e2e8f0",
+                    fontSize: "14px",
+                    color: "#2d3748",
+                  }}
+                >
+                  {marker.longitude}
+                </td>
                 <td
                   style={{
                     padding: "12px",
@@ -170,11 +211,13 @@ function TrashMarkerList({
                   {marker.status.charAt(0).toUpperCase() +
                     marker.status.slice(1)}
                 </td>
-                <td style={{ 
-                  padding: "12px", 
-                  borderRight: "1px solid #e2e8f0",
-                  fontSize: "14px"
-                }}>
+                <td
+                  style={{
+                    padding: "12px",
+                    borderRight: "1px solid #e2e8f0",
+                    fontSize: "14px",
+                  }}
+                >
                   {marker.status === "pending" && (
                     <button
                       style={{
@@ -238,7 +281,7 @@ function TrashMarkerList({
                     padding: "12px",
                     minWidth: "150px",
                     maxWidth: "200px",
-                    fontSize: "14px"
+                    fontSize: "14px",
                   }}
                 >
                   <textarea

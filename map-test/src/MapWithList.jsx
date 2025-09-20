@@ -101,7 +101,8 @@ function MapWithList() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #e0f7ff 0%, #b8ebff 50%, #87ceeb 100%)",
+        background:
+          "linear-gradient(135deg, #e0f7ff 0%, #b8ebff 50%, #87ceeb 100%)",
         padding: "0",
         fontFamily: "'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
