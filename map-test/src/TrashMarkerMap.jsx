@@ -103,7 +103,19 @@ function TrashMarkerMap({
                   <strong>Status:</strong> {marker.status}
                   <br />
                   {marker.status === "pending" && (
-                    <button onClick={() => updateStatus(marker._id, "ongoing")}>
+                    <button
+                      style={{
+                        padding: "6px 12px",
+                        borderRadius: "4px",
+                        background: "#2196f3",
+                        color: "#fff",
+                        border: "none",
+                        cursor: "pointer",
+                        fontSize: "14px",
+                        fontWeight: "500",
+                      }}
+                      onClick={() => updateStatus(marker._id, "ongoing")}
+                    >
                       Accept
                     </button>
                   )}
@@ -112,6 +124,13 @@ function TrashMarkerMap({
                       <input
                         type="file"
                         accept="image/*"
+                        style={{
+                          marginBottom: "8px",
+                          padding: "4px",
+                          border: "1px solid #ccc",
+                          borderRadius: "4px",
+                          fontSize: "12px",
+                        }}
                         onChange={(e) => {
                           const file = e.target.files[0];
                           if (file) {
@@ -120,6 +139,18 @@ function TrashMarkerMap({
                         }}
                       />
                       <button
+                        style={{
+                          padding: "6px 12px",
+                          borderRadius: "4px",
+                          background: "#4caf50",
+                          color: "#fff",
+                          border: "none",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          fontWeight: "500",
+                          display: "block",
+                          width: "100%",
+                        }}
                         onClick={() => {
                           const fileInput =
                             document.querySelector(`input[type="file"]`);
@@ -136,7 +167,18 @@ function TrashMarkerMap({
                   )}
                   {/* Remove direct complete from map, require file upload via table */}
                   <button
-                    style={{ marginTop: 4 }}
+                    style={{
+                      marginTop: "8px",
+                      padding: "6px 12px",
+                      borderRadius: "4px",
+                      background: "#f44336",
+                      color: "#fff",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      width: "100%",
+                    }}
                     onClick={() => deleteMarkerFrontend(marker._id)}
                   >
                     Delete (frontend only)

@@ -15,6 +15,7 @@ function TrashMarkerList({
   updateRemark,
 }) {
   const [uploadingId, setUploadingId] = useState(null);
+  const [focusedRemarkId, setFocusedRemarkId] = useState(null);
 
   function handleCompleteClick(id) {
     setUploadingId(id);
@@ -22,6 +23,22 @@ function TrashMarkerList({
 
   function handleRemarkChange(id, remark) {
     updateRemark(id, remark);
+  }
+
+  function handleRemarkKeyPress(e, id) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setFocusedRemarkId(null);
+      e.target.blur(); // Remove focus from the input
+    }
+  }
+
+  function handleRemarkFocus(id) {
+    setFocusedRemarkId(id);
+  }
+
+  function handleRemarkBlur() {
+    setFocusedRemarkId(null);
   }
 
   async function handleImageUpload(e, id) {
@@ -36,7 +53,7 @@ function TrashMarkerList({
 
   return (
     <div style={{ marginTop: 20 }}>
-      <h3>Task List</h3>
+      {/* <h3>Task List</h3> */}
       {loading ? (
         <div>Loading markers...</div>
       ) : (
@@ -44,23 +61,67 @@ function TrashMarkerList({
           style={{
             width: "100%",
             borderCollapse: "collapse",
-            boxShadow: "0 2px 8px #ccc",
-            borderRadius: "8px",
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+            borderRadius: "12px",
             overflow: "hidden",
+            border: "1px solid #e2e8f0",
+            backgroundColor: "#ffffff"
           }}
         >
-          <thead style={{ background: "#f5f5f5" }}>
+          <thead style={{ background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)" }}>
             <tr>
-              <th style={{ padding: "10px" }}>Address</th>
-              <th style={{ padding: "10px" }}>Lat</th>
-              <th style={{ padding: "10px" }}>Lng</th>
-              <th style={{ padding: "10px" }}>Status</th>
-              <th style={{ padding: "10px" }}>Action</th>
-              <th style={{ padding: "10px" }}>Remark</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Address</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Latitude</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Longitude</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Status</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Action</th>
+              <th style={{ 
+                padding: "14px 12px", 
+                color: "#ffffff", 
+                fontWeight: "600", 
+                fontSize: "14px",
+                textAlign: "left",
+                borderBottom: "2px solid #2b77cb"
+              }}>Remark</th>
             </tr>
           </thead>
           <tbody>
-            {markers.map((marker) => (
+            {markers.map((marker, index) => (
               <tr
                 key={marker._id}
                 style={{
@@ -71,15 +132,33 @@ function TrashMarkerList({
                       ? statusColor["ongoing"]
                       : statusColor["pending"],
                   transition: "background 0.3s",
+                  borderBottom: index === markers.length - 1 ? "none" : "1px solid #e2e8f0"
                 }}
               >
-                <td style={{ padding: "8px" }}>{marker.address}</td>
-                <td style={{ padding: "8px" }}>{marker.latitude}</td>
-                <td style={{ padding: "8px" }}>{marker.longitude}</td>
+                <td style={{ 
+                  padding: "12px", 
+                  borderRight: "1px solid #e2e8f0",
+                  fontSize: "14px",
+                  color: "#2d3748"
+                }}>{marker.address}</td>
+                <td style={{ 
+                  padding: "12px", 
+                  borderRight: "1px solid #e2e8f0",
+                  fontSize: "14px",
+                  color: "#2d3748"
+                }}>{marker.latitude}</td>
+                <td style={{ 
+                  padding: "12px", 
+                  borderRight: "1px solid #e2e8f0",
+                  fontSize: "14px",
+                  color: "#2d3748"
+                }}>{marker.longitude}</td>
                 <td
                   style={{
-                    padding: "8px",
+                    padding: "12px",
+                    borderRight: "1px solid #e2e8f0",
                     fontWeight: "bold",
+                    fontSize: "14px",
                     color:
                       marker.status === "completed"
                         ? "#388e3c"
@@ -88,9 +167,14 @@ function TrashMarkerList({
                         : "#fbc02d",
                   }}
                 >
-                  {marker.status}
+                  {marker.status.charAt(0).toUpperCase() +
+                    marker.status.slice(1)}
                 </td>
-                <td style={{ padding: "8px" }}>
+                <td style={{ 
+                  padding: "12px", 
+                  borderRight: "1px solid #e2e8f0",
+                  fontSize: "14px"
+                }}>
                   {marker.status === "pending" && (
                     <button
                       style={{
@@ -124,7 +208,16 @@ function TrashMarkerList({
                         type="file"
                         accept="image/*"
                         onChange={(e) => handleImageUpload(e, marker._id)}
-                        style={{ marginRight: "8px" }}
+                        style={{
+                          marginRight: "8px",
+                          padding: "8px",
+                          border: "2px solid #4299e1",
+                          borderRadius: "8px",
+                          fontSize: "12px",
+                          backgroundColor: "#fff",
+                          cursor: "pointer",
+                          transition: "border-color 0.2s ease",
+                        }}
                       />
                     </>
                   )}
@@ -140,21 +233,43 @@ function TrashMarkerList({
                     />
                   )}
                 </td>
-                <td style={{ padding: "8px", minWidth: "120px" }}>
-                  <input
-                    type="text"
+                <td
+                  style={{
+                    padding: "12px",
+                    minWidth: "150px",
+                    maxWidth: "200px",
+                    fontSize: "14px"
+                  }}
+                >
+                  <textarea
                     placeholder="Add remark..."
                     value={marker.remark || ""}
                     onChange={(e) =>
                       handleRemarkChange(marker._id, e.target.value)
                     }
+                    onKeyPress={(e) => handleRemarkKeyPress(e, marker._id)}
+                    onFocus={() => handleRemarkFocus(marker._id)}
+                    onBlur={handleRemarkBlur}
                     style={{
                       width: "100%",
+                      minHeight: "40px",
+                      maxHeight: "120px",
                       boxSizing: "border-box",
-                      padding: "6px",
-                      borderRadius: "4px",
-                      border: "1px solid #ccc",
+                      padding: "8px",
+                      borderRadius: "6px",
+                      border: "2px solid #e2e8f0",
+                      fontFamily: "inherit",
+                      fontSize: "14px",
+                      resize: "vertical",
+                      wordWrap: "break-word",
+                      whiteSpace: "pre-wrap",
+                      overflow: "auto",
+                      lineHeight: "1.4",
+                      transition: "border-color 0.2s ease",
+                      borderColor:
+                        focusedRemarkId === marker._id ? "#4299e1" : "#e2e8f0",
                     }}
+                    rows={2}
                   />
                 </td>
               </tr>
